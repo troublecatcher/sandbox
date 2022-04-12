@@ -17,36 +17,88 @@ namespace lab3
         {
             con.Open();
             table_add_c.Visible = false;
+            table_delete_c.Visible = false;
+            table_edit_c.Visible = false;
+            table_add_o.Visible = false;
+            table_delete_o.Visible = false;
+            table_edit_o.Visible = false;
         }
 
-        /*protected void Button1_Click1(object sender, EventArgs e)
+        protected void Select(object sender, EventArgs e)
         {
-            SqlCommand cmd = new SqlCommand("insert into Заказчики values('" + TextBox1.Text + "', '" + TextBox2.Text + "','" + TextBox3.Text + "','" + TextBox4.Text + "')", con);
+            switch (subMenu.SelectedItem.Value)
+            {
+                case "customer":
+                    switch (menu.SelectedItem.Value)
+                    {
+                        case "add":
+                            table_add_c.Visible = true;
+                            break;
+                        case "delete":
+                            table_delete_c.Visible = true;
+                            break;
+                        case "edit":
+                            table_edit_c.Visible = true;
+                            break;
+                        default: break;
+                    }
+                    break;
+                case "order":
+                    switch (menu.SelectedItem.Value)
+                    {
+                        case "add":
+                            table_add_o.Visible = true;
+                            break;
+                        case "delete":
+                            table_delete_o.Visible = true;
+                            break;
+                        case "edit":
+                            table_edit_o.Visible = true;
+                            break;
+                        default: break;
+                    }
+                    break;
+                default: break;
+            }
+        }
+        protected void button_add_c_Click(object sender, EventArgs e)
+        {
+            var id = input_add_c_id.Text;
+            var name = input_add_c_name.Text;
+            var surname = input_add_c_surname.Text;
+            var year = input_add_c_bdYear.Text;
+            SqlCommand cmd = new SqlCommand("INSERT INTO [Заказчики] VALUES(@id, @name, @surname, @year)", con);
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@name", name);
+            cmd.Parameters.AddWithValue("@surname", surname);
+            cmd.Parameters.AddWithValue("@year", year);
             cmd.ExecuteNonQuery();
             con.Close();
-            Label1.Text = "success";
             GridView1.DataBind();
-            TextBox1.Text = "";
-            TextBox2.Text = "";
-            TextBox3.Text = "";
-            TextBox4.Text = "";
-        }*/
-        protected void OnSelectedIndexChanged(object sender, EventArgs e)
+        }
+
+        protected void button_add_o_Click(object sender, EventArgs e)
         {
-            switch (menu.SelectedItem.Value)
-            {
-                case "add":
-                    table_add_c.Visible = true;
-                    break;
-                case "delete":
-                    break;
-                case "view":
-                    break;
-                case "edit":
-                    break;
-                default:
-                    break;
-            }
+            var id = input_add_o_id.Text;
+            var title = input_add_o_title.Text;
+            var idc = input_add_o_id_c.Text;
+            var price = input_add_o_price.Text;
+            var quantity = input_add_o_quantity.Text;
+            SqlCommand cmd = new SqlCommand("INSERT INTO [Заказы] VALUES(@id, @title, @idc, @price, @quantity)", con);
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@title", title);
+            cmd.Parameters.AddWithValue("@idc", idc);
+            cmd.Parameters.AddWithValue("@price", price);
+            cmd.Parameters.AddWithValue("@quantity", quantity);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            GridView1.DataBind();
+            GridView2.DataBind();
+        }
+
+        protected void button_delete_c_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
