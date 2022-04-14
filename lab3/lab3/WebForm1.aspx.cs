@@ -75,6 +75,7 @@ namespace lab3
             cmd.ExecuteNonQuery();
             con.Close();
             GridView1.DataBind();
+            GridView2.DataBind();
         }
 
         protected void button_add_o_Click(object sender, EventArgs e)
@@ -98,7 +99,61 @@ namespace lab3
 
         protected void button_delete_c_Click(object sender, EventArgs e)
         {
+            var id = input_delete_c_id.Text;
+            SqlCommand cmd = new SqlCommand("DELETE FROM [Заказчики] WHERE ID=@id", con);
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            GridView1.DataBind();
+            GridView2.DataBind();
+        }
 
+        protected void button_delete_o_Click(object sender, EventArgs e)
+        {
+            var id = input_delete_o_id.Text;
+            var idc = input_delete_o_id_c.Text;
+            SqlCommand cmd = new SqlCommand("DELETE FROM [Заказы] WHERE ID=@id OR customerID=@idc", con);
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@idc", idc);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            GridView1.DataBind();
+            GridView2.DataBind();
+        }
+
+        protected void button_edit_c_Click(object sender, EventArgs e)
+        {
+            var id = input_edit_c_id.Text;
+            var name = input_edit_c_name.Text;
+            var surname = input_edit_c_surname.Text;
+            var year = input_edit_c_bdYear.Text;
+            SqlCommand cmd = new SqlCommand("UPDATE [Заказчики] SET name = @name, surname = @surname, bdYear = @year WHERE ID = @id", con);
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@name", name);
+            cmd.Parameters.AddWithValue("@surname", surname);
+            cmd.Parameters.AddWithValue("@year", year);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            GridView1.DataBind();
+            GridView2.DataBind();
+        }
+        protected void button_edit_o_Click(object sender, EventArgs e)
+        {
+            var id = input_edit_o_id.Text;
+            var title = input_edit_o_title.Text;
+            var idc = input_edit_o_id_c.Text;
+            var price = input_edit_o_price.Text;
+            var quantity = input_edit_o_quantity.Text;
+            SqlCommand cmd = new SqlCommand("UPDATE [Заказы] SET title = @title, customerID = @idc, price = @price, quantity = @quantity WHERE ID = @id", con);
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@title", title);
+            cmd.Parameters.AddWithValue("@idc", idc);
+            cmd.Parameters.AddWithValue("@price", price);
+            cmd.Parameters.AddWithValue("@quantity", quantity);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            GridView1.DataBind();
+            GridView2.DataBind();
         }
     }
 }

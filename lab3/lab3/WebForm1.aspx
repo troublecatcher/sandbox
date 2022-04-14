@@ -17,6 +17,12 @@
         .auto-style4 {
             height: 33px;
         }
+        .auto-style5 {
+            width: 0%;
+        }
+        .auto-style6 {
+            text-align: left;
+        }
     </style>
     </head>
 <body>
@@ -44,6 +50,11 @@
             </table>
         </div>
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Заказчики]"></asp:SqlDataSource>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Заказы]"></asp:SqlDataSource>
+        <table class="auto-style5">
+            <tr>
+                <td class="auto-style6">
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="ID" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" Width="350px">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
@@ -63,8 +74,8 @@
             <SortedDescendingCellStyle BackColor="#FFFDF8" />
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Заказы]"></asp:SqlDataSource>
-        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="ID" DataSourceID="SqlDataSource2" ForeColor="#333333" GridLines="None">
+                </td>
+                <td class="auto-style6"><asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="ID" DataSourceID="SqlDataSource2" ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
                 <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID" />
@@ -84,7 +95,11 @@
             <SortedDescendingCellStyle BackColor="#FFFDF8" />
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
-        <asp:Panel ID="table_add_c" runat="server" Width="324px">
+                </td>
+            </tr>
+        </table>
+        <br />
+&nbsp;<asp:Panel ID="table_add_c" runat="server" Width="324px">
             <table style="width: 222px">
                 <tr>
                     <td class="auto-style2">ID</td>
@@ -143,6 +158,10 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="auto-style2">&nbsp;</td>
+                    <td class="auto-style2">&nbsp;</td>
+                </tr>
+                <tr>
                     <td>name</td>
                     <td>
                         <asp:TextBox ID="input_edit_c_name" runat="server"></asp:TextBox>
@@ -162,7 +181,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style2">
-                        <asp:Button ID="button_edit_c" runat="server" Text="Изменить" />
+                        <asp:Button ID="button_edit_c" runat="server" Text="Изменить" OnClick="button_edit_c_Click" />
                     </td>
                     <td class="auto-style2">&nbsp;</td>
                 </tr>
@@ -237,7 +256,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:Button ID="button_delete_o" runat="server" Text="Удалить" />
+                        <asp:Button ID="button_delete_o" runat="server" Text="Удалить" OnClick="button_delete_o_Click" />
                     </td>
                     <td>&nbsp;</td>
                 </tr>
@@ -252,6 +271,10 @@
                     <td class="auto-style4">
                         <asp:TextBox ID="input_edit_o_id" runat="server"></asp:TextBox>
                     </td>
+                </tr>
+                <tr>
+                    <td class="auto-style4">&nbsp;</td>
+                    <td class="auto-style4">&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style4">
@@ -287,7 +310,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:Button ID="button_edit_o" runat="server" Text="Изменить"/>
+                        <asp:Button ID="button_edit_o" runat="server" Text="Изменить" OnClick="button_edit_o_Click"/>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
