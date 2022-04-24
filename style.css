@@ -46,6 +46,7 @@ form[name='filterForm']{
     left: 0;
     z-index: 2;
     transition: all 1s ease;
+    opacity: 0.9;
 }
 .modal{
     height: 500px;
