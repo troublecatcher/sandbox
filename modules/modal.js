@@ -14,6 +14,15 @@ let modalFunctions = {
             close.id = 'modalCloseBtn';
             modalFunctions.modal.append(close);
             close.onclick = modalFunctions.killModal.bind(this,modal,overlay);
+        modalFunctions.overlay.addEventListener('click', (event) => {
+            if (!event.target.closest("#modal"))
+                modalFunctions.killModal();
+        })
+        document.addEventListener('keydown', (e) =>  {
+            if(e.key === "Escape") {
+                modalFunctions.killModal();
+            }
+        })
     },
     appendModal: (item) => {
         modalFunctions.modal.append(item);
@@ -24,5 +33,7 @@ let modalFunctions = {
         container.style.filter = 'none';
     }
 }
+
+
 
 export let {addModal, appendModal} = modalFunctions;
