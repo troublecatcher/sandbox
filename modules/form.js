@@ -18,9 +18,10 @@ let formFunctions = {
                 addBtn.after(delBtn);
         }
         let killField = () => {
-            let x = document.querySelectorAll('[id$="extrafield"]');
+            let x = document.querySelectorAll(`[id=${element.id}extrafield]`);
             if(x.length != 0) x[x.length - 1].remove();
-            if(x.length == 1) delBtn.remove();
+            if(x.length == 1) document.getElementById(`${element.id}DelBtn`).remove();
+            console.log(x);
         }
         let addBtn = document.createElement('button');
             addBtn.setAttribute('type', 'button');
@@ -30,6 +31,7 @@ let formFunctions = {
         let delBtn = document.createElement('button');
             delBtn.setAttribute('type', 'button');
             delBtn.textContent = '-';
+            delBtn.id = `${element.id}DelBtn`;
             delBtn.onclick = killField;
     },
 }

@@ -10,19 +10,10 @@ let modalFunctions = {
         container.style.filter = 'blur(7px)';
     
         let close = document.createElement('button');
-            close.textContent = 'X';
+            close.textContent = 'Закрыть';
             close.id = 'modalCloseBtn';
             modalFunctions.modal.append(close);
             close.onclick = modalFunctions.killModal.bind(this,modal,overlay);
-        modalFunctions.overlay.addEventListener('click', (event) => {
-            if (!event.target.closest("#modal"))
-                modalFunctions.killModal();
-        })
-        document.addEventListener('keydown', (e) =>  {
-            if(e.key === "Escape") {
-                modalFunctions.killModal();
-            }
-        })
     },
     appendModal: (item) => {
         modalFunctions.modal.append(item);
@@ -34,6 +25,14 @@ let modalFunctions = {
     }
 }
 
-
+document.addEventListener('click', (event) => {
+    if (event.target == modalFunctions.overlay)
+        modalFunctions.killModal();
+})
+document.addEventListener('keydown', (e) =>  {
+    if(e.key === "Escape") {
+        modalFunctions.killModal();
+    }
+})
 
 export let {addModal, appendModal} = modalFunctions;
