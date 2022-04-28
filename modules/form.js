@@ -21,7 +21,6 @@ let formFunctions = {
             let x = document.querySelectorAll(`[id=${element.id}extrafield]`);
             if(x.length != 0) x[x.length - 1].remove();
             if(x.length == 1) document.getElementById(`${element.id}DelBtn`).remove();
-            console.log(x);
         }
         let addBtn = document.createElement('button');
             addBtn.setAttribute('type', 'button');
